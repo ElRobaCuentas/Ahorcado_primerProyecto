@@ -2,9 +2,9 @@
 <div class="row">
   <div class="cal text-center">
     
-    <img src="assets/9.png" class="ahorcado-img">
+    <img src="assets/{{ intentos }}.png" class="ahorcado-img">
 
-    <h3>Intentos <small> 3 / 9</small> </h3>
+    <h3>Intentos <small> {{ intentos }} / 9</small> </h3>
   
   </div>
 </div>
@@ -13,18 +13,38 @@
 <div class="row">
   <div class="cal text-center">
     
-  <h1> _ _ _ _ _ _ _ _ _ _</h1>
+  <h1> {{ palabraOculta }}</h1>
   
   </div>
 </div>
 
-<div class="row">
+
+
+<div class="row" *ngIf="gano">
   <div class="cal text-center">
     
-    <button class="btn btn-primary"> A </button>
-    <button class="btn btn-primary"> B </button>
-    <button class="btn btn-primary"> C </button>
+  <h1> Felicidades ganaste:) </h1>
   
+  </div>
+</div>
+
+
+<div class="row" *ngIf="perdio">
+  <div class="cal text-center">
+    
+  <h1> Lo siento, perdiste :/</h1>
+  <h2>{{ palabra }} </h2>
+  
+  </div>
+</div>
+
+<div class="row" *ngIf="!gano && !perdio">
+  <div class="cal text-center">
+    
+    <button (click)="comprobar( letra )" *ngFor="let letra of letras" class="btn btn-primary"> 
+      {{letra}}
+    </button>
+    
   </div> 
 </div>
 
